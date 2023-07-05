@@ -476,9 +476,9 @@ impl Enigo {
         }
     }
 
-    fn get_us_ansi_keycode(&self, char: Char) -> CGKeyCode {
+    fn get_us_ansi_keycode(&self, key: char) -> CGKeyCode {
         use us_ansi::*;
-        match char {
+        match key {
             'a' => a,
             'b' => b,
             'c' => c,
@@ -526,6 +526,7 @@ impl Enigo {
             '`' => grave,
             '[' => leftBracket,
             ']' => rightBracket,
+            _ => 0,
         }
     }
 
