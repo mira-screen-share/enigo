@@ -467,9 +467,66 @@ impl Enigo {
             Key::Tab => kVK_Tab,
             Key::UpArrow => kVK_UpArrow,
             Key::Raw(raw_keycode) => raw_keycode,
-            Key::Layout(c) => self.get_layoutdependent_keycode(c.to_string()),
+
+            // Workaround until https://github.com/enigo-rs/enigo/issues/153 is fixed
+            // Key::Layout(c) => self.get_layoutdependent_keycode(c.to_string()),
+            Key::Layout(c) => self.get_us_ansi_keycode(c),
 
             Key::Super | Key::Command | Key::Windows | Key::Meta => kVK_Command,
+        }
+    }
+
+    fn get_us_ansi_keycode(&self, key: char) -> CGKeyCode {
+        use us_ansi::*;
+        match key {
+            'a' => a,
+            'b' => b,
+            'c' => c,
+            'd' => d,
+            'e' => e,
+            'f' => f,
+            'g' => g,
+            'h' => h,
+            'i' => i,
+            'j' => j,
+            'k' => k,
+            'l' => l,
+            'm' => m,
+            'n' => n,
+            'o' => o,
+            'p' => p,
+            'q' => q,
+            'r' => r,
+            's' => s,
+            't' => t,
+            'u' => u,
+            'v' => v,
+            'w' => w,
+            'x' => x,
+            'y' => y,
+            'z' => z,
+            '0' => zero,
+            '1' => one,
+            '2' => two,
+            '3' => three,
+            '4' => four,
+            '5' => five,
+            '6' => six,
+            '7' => seven,
+            '8' => eight,
+            '9' => nine,
+            '=' => equals,
+            '-' => minus,
+            ';' => semicolon,
+            '\'' => apostrophe,
+            ',' => comma,
+            '.' => period,
+            '/' => forwardSlash,
+            '\\' => backslash,
+            '`' => grave,
+            '[' => leftBracket,
+            ']' => rightBracket,
+            _ => 0,
         }
     }
 
