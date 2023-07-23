@@ -474,7 +474,7 @@ impl Enigo {
     }
 
     fn get_us_ansi_keycode(&self, key: char) -> CGKeyCode {
-        use us_ansi::*;
+        use crate::macos::us_ansi::*;
         match key {
             'a' => a,
             'b' => b,
